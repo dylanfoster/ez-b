@@ -1,0 +1,76 @@
+html { 
+  background: url(../images/bg.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.ConnectPanel button{
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+}
+
+.movePanel button {
+	margin: 10px;
+	padding: 15px;
+}
+
+.vSlider{
+	height:90%;
+}
+
+.hSlider{
+	width:99%;
+}
+
+.vPanel{
+	position:absolute; 
+	top:20px;; 
+	right:0;
+	text-align:center;
+}
+
+.hPanel{
+	width:100%;
+	text-align:center;
+}
+
+.hChild{
+	width:40px; 
+	height:30px; 
+	text-align:center; 
+	padding:15px; 
+	margin-right:10px; 
+	font-weight:bold; 
+	font-size:25px;
+	float:left;
+}
+.vChild{
+	width:40px; 
+	height:30px; 
+	text-align:center; 
+	padding:15px; 
+	margin-right:10px; 
+	font-weight:bold; 
+	font-size:25px;
+}
+.pinServo{
+	width: 69px;
+}
+
+.scriptControls {
+	height:150px; 
+	overflow:scroll; 
+	overflow-x:hidden; 
+	background-color:#FFF;
+	border: solid 1px #000;
+	border-radius: 5px;
+}
+
+#boardStatus{
+	width: 25px;
+	height: 25px;
+	margin-top: 6px;
+	margin-left: 50px;
+}

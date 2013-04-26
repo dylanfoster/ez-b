@@ -1,0 +1,24 @@
+{
+  "name": "EZ-BWeb",
+  "version": "0.0.1",
+  "description": "Communicate with EZ-Builder through a web interface from any device, anywhere",
+  "main": "app.js",
+  "dependencies": {
+    "ez-b": "~0.0.1",
+    "socket.io": "~0.9.14",
+	"connect":""
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "keywords": [
+    "EZ-Robot",
+    "EZ-B",
+    "Microcontrollers",
+    "Robotics"
+  ],
+  "author": "Carlos Martin",
+  "license": "BSD"
+}

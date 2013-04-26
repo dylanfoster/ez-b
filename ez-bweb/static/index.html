@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EZ-Robot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/jQueryUI/themes/redmond/jquery-ui-1.10.2.custom.min.css" rel="stylesheet">
+    <link href="css/ez-b.css" rel="stylesheet">
+    <script src="lib/jQueryUI/jquery-1.9.1.js"></script><br>
+    <script src="lib/jQueryUI/jquery-ui-1.10.2.custom.min.js"></script>
+    <script src="lib/jQueryUI/jquery.ui.touch-punch.min.js"></script>
+    <script src="lib/jQueryUI/jquery.tmpl.js"></script>
+    <script src="js/templates.js"></script>
+	  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="lib/socketIO/socket.io.js"></script>
+</head>
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">EZ-Robot</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="icon-plus"></i> Add</a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                  <li class="dropdown-submenu">
+                  	<a tabindex="-1" href="#">
+                    <i class="icon-off"></i> Connections</a>
+                      <ul class="dropdown-menu">
+                         <li ><a tabindex="-1" href="#" id="ConnectEZ"><i class="icon-wrench"></i> Connect to EZ-Builder</a></li> 
+                         <li ><a tabindex="-1" href="#" id="Connect"><i class="icon-tasks"></i> Connection Panel</a></li>
+                      </ul>
+                  </li>
+                    <li class="dropdown-submenu">
+                      <a tabindex="-1" href="#"><i class="icon-facetime-video"></i> Servo</a>
+                      <ul class="dropdown-menu">
+                         <li ><a tabindex="-1" href="#" id="vServo"><i class="icon-arrow-up"></i> Vertical Servo</a></li> 
+                         <li ><a tabindex="-1" href="#" id="hServo"><i class="icon-arrow-right"></i> Horizontal Servo</a></li>
+                      </ul>
+                    </li>
+                    <li class="dropdown-submenu">
+                      <a tabindex="-1" href="#"><i class="icon-cog"></i> Digital</a>
+                      <ul class="dropdown-menu">
+                         <li ><a tabindex="-1" href="#" id="dSetter"><i class="icon-hand-up"></i> Set Digital</a></li> 
+                      </ul>
+                    </li>
+                    <li ><a tabindex="-1" href="#" id="pwm"><i class="icon-resize-full"></i> PWM</a></li>
+                    <li class="dropdown-submenu">
+                      <a tabindex="-1" href="#"><i class="icon-pencil"></i> Scripting</a>
+                      <ul class="dropdown-menu">
+                         <li ><a tabindex="-1" href="#" id="ScriptManager"><i class="icon-edit"></i> Script-Manager</a></li> 
+                      </ul>
+                    </li>
+                    <li ><a tabindex="-1" href="#" id="movePanel"><i class="icon-move"></i> Movement-Panel</a></li>
+                </ul> 
+              </li>
+              <li>
+                <img src="images/Offline.png" id="boardStatus"/>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+</div>
+   
+   <!--Connection-->
+   <div class="ConnectEZ hide" title="Connect to EZ-Builder">
+   	<div class="form-inline">
+      <input type="text" value="localhost" class="input-small" id="ip" placeholder="IP Address">
+      <input type="text" value="6666" class="input-small" id="port" placeholder="Port">
+      <span class=" btnConnect btn btn-info">Connect</span>
+      <span id="connecting"></span>
+   </div>
+   </div>
+   <div class="ConnectPanel hide" title="Connection">
+   	0 <button data-ezbd="0" class="btn btn-info btnCtn">Connect</button><br/>
+    1 <button data-ezbd="1" class="btn btn-info btnCtn">Connect</button><br/>
+    2 <button data-ezbd="2" class="btn btn-info btnCtn">Connect</button><br/>
+    3 <button data-ezbd="3" class="btn btn-info btnCtn">Connect</button><br/>
+    4 <button data-ezbd="4" class="btn btn-info btnCtn">Connect</button><br/>
+   </div>
+   
+   <div class="vServo hide">
+   	<div class="vSlider"></div>
+   	<div class="pull-right vPanel">
+        <div class='alert alert-info vChild'>0</div>
+        <select class="pinServo">
+          <option>NA</option>
+          <option>D0</option>
+          <option>D1</option>
+          <option>D2</option>
+          <option>D3</option>
+          <option>D4</option>
+          <option>D5</option>
+          <option>D6</option>
+          <option>D7</option>
+          <option>D8</option>
+          <option>D9</option>
+          <option>D10</option>
+          <option>D11</option>
+          <option>D12</option>
+          <option>D13</option>
+          <option>D14</option>
+          <option>D15</option>
+          <option>D16</option>
+          <option>D17</option>
+          <option>D18</option>
+          <option>D19</option>
+          <option>V0</option>
+          <option>V1</option>
+          <option>V2</option>
+          <option>V3</option>
+          <option>V4</option>
+          <option>V5</option>
+          <option>V6</option>
+          <option>V7</option>
+          <option>V8</option>
+          <option>V9</option>
+          <option>V10</option>
+          <option>V11</option>
+          <option>V12</option>
+          <option>V13</option>
+          <option>V14</option>
+          <option>V15</option>
+          <option>V16</option>
+          <option>V17</option>
+          <option>V18</option>
+          <option>V19</option>
+        </select>
+        <br/>
+    </div>
+   </div>
+   
+ <div class="hServo hide">
+	<div class="hPanel">
+        <div class='alert alert-info hChild'>0</div>
+        <select class="pinServo">
+          <option>NA</option>
+          <option>D0</option>
+          <option>D1</option>
+          <option>D2</option>
+          <option>D3</option>
+          <option>D4</option>
+          <option>D5</option>
+          <option>D6</option>
+          <option>D7</option>
+          <option>D8</option>
+          <option>D9</option>
+          <option>D10</option>
+          <option>D11</option>
+          <option>D12</option>
+          <option>D13</option>
+          <option>D14</option>
+          <option>D15</option>
+          <option>D16</option>
+          <option>D17</option>
+          <option>D18</option>
+          <option>D19</option>
+          <option>V0</option>
+          <option>V1</option>
+          <option>V2</option>
+          <option>V3</option>
+          <option>V4</option>
+          <option>V5</option>
+          <option>V6</option>
+          <option>V7</option>
+          <option>V8</option>
+          <option>V9</option>
+          <option>V10</option>
+          <option>V11</option>
+          <option>V12</option>
+          <option>V13</option>
+          <option>V14</option>
+          <option>V15</option>
+          <option>V16</option>
+          <option>V17</option>
+          <option>V18</option>
+          <option>V19</option>
+        </select>
+    </div>
+    <br/><br/>
+    <div class="hSlider"></div>
+</div>
+
+   <div class="pwm hide">
+   	<div class="vSlider"></div>
+   	<div class="pull-right vPanel">
+        <div class='alert alert-info vChild'>0</div>
+        <select class="pinServo">
+          <option>NA</option>
+          <option>D0</option>
+          <option>D1</option>
+          <option>D2</option>
+          <option>D3</option>
+          <option>D4</option>
+          <option>D5</option>
+          <option>D6</option>
+          <option>D7</option>
+          <option>D8</option>
+          <option>D9</option>
+          <option>D10</option>
+          <option>D11</option>
+          <option>D12</option>
+          <option>D13</option>
+          <option>D14</option>
+          <option>D15</option>
+          <option>D16</option>
+          <option>D17</option>
+          <option>D18</option>
+          <option>D19</option>
+          <option>V0</option>
+          <option>V1</option>
+          <option>V2</option>
+          <option>V3</option>
+          <option>V4</option>
+          <option>V5</option>
+          <option>V6</option>
+          <option>V7</option>
+          <option>V8</option>
+          <option>V9</option>
+          <option>V10</option>
+          <option>V11</option>
+          <option>V12</option>
+          <option>V13</option>
+          <option>V14</option>
+          <option>V15</option>
+          <option>V16</option>
+          <option>V17</option>
+          <option>V18</option>
+          <option>V19</option>
+        </select>
+        <br/>
+    </div>
+   </div>
+    
+<!--Digitak Setter-->
+    <div class="dSetter hide">
+        <select class="pinServo">
+          <option>NA</option>
+          <option>D0</option>
+          <option>D1</option>
+          <option>D2</option>
+          <option>D3</option>
+          <option>D4</option>
+          <option>D5</option>
+          <option>D6</option>
+          <option>D7</option>
+          <option>D8</option>
+          <option>D9</option>
+          <option>D10</option>
+          <option>D11</option>
+          <option>D12</option>
+          <option>D13</option>
+          <option>D14</option>
+          <option>D15</option>
+          <option>D16</option>
+          <option>D17</option>
+          <option>D18</option>
+          <option>D19</option>
+          <option>V0</option>
+          <option>V1</option>
+          <option>V2</option>
+          <option>V3</option>
+          <option>V4</option>
+          <option>V5</option>
+          <option>V6</option>
+          <option>V7</option>
+          <option>V8</option>
+          <option>V9</option>
+          <option>V10</option>
+          <option>V11</option>
+          <option>V12</option>
+          <option>V13</option>
+          <option>V14</option>
+          <option>V15</option>
+          <option>V16</option>
+          <option>V17</option>
+          <option>V18</option>
+          <option>V19</option>
+        </select>
+        <button class="btn btn-info digiBtnOn">On</button>
+    </div>
+    
+    <div class="movePanel hide">
+      <div class="row-fluid">
+          <div class="span4 offset4">
+            <button class="btn btn-primary" id="UpBtn"><i class="icon-arrow-up"></i></button>
+          </div>
+      </div>
+      <div class="row-fluid">
+          <div class="span4">
+            <button class="btn btn-primary" id="LeftBtn"><i class="icon-arrow-left"></i></button>
+          </div>
+          <div class="span4">
+            <button class="btn btn-primary" id="StopBtn"><i class="icon-stop"></i></button>
+          </div>
+          <div class="span4">
+            <button class="btn btn-primary" id="RightBtn"><i class="icon-arrow-right"></i></button>
+          </div>
+      </div>
+        <div class="row-fluid">
+          <div class="span4 offset4">
+            <button class="btn btn-primary" id="DownBtn"><i class="icon-arrow-down"></i></button>
+          </div>
+      </div>
+    </div>
+
+    <div class="ScriptManager hide">
+        <div class="scriptControls">
+          <table class="table table-striped" style="width:270px;">
+            <tbody></tbody>
+          </table>
+        </div><br/>
+        <button class="btn btn-warning" id="addScript">Add Script</button>
+    </div>
+
+    <div class="ScriptNamer hide">
+      <div class="form-inline">
+        <input type="text" id="scptName" placeholder="Script Name">
+        <span class="saveScript btn btn-info">Save</span>
+   </div>
+    </div>
+
+<script src="js/config.js"></script>
+<script src="js/ez-b.js"></script>
+</body>
+</html>
