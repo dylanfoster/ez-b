@@ -186,7 +186,7 @@ For more information about Ez-Builder commands please visit http://www.ez-robot.
 
 (The BSD License)
 
-Copyright (c) 2013 Carlos Martin &lt;carlos@martinapps.net&gt;
+Copyright (c) 2013 Carlos Martin &lt;pirumpi@gmail.com&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
